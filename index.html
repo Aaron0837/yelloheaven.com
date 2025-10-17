@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Logger</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+        
+        .option-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .option-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            padding: 25px 20px 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.8rem;
+            color: white;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .card-content {
+            padding: 0 20px 25px;
+            flex-grow: 1;
+            color: #5d6d7e;
+            line-height: 1.5;
+        }
+        
+        .card-footer {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #eaeaea;
+            color: #3498db;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .option-card:hover .arrow {
+            transform: translateX(5px);
+        }
+        
+        /* Color schemes for each option */
+        .humidity .card-icon {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+        
+        .distance .card-icon {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+        
+        .hall .card-icon {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .noise .card-icon {
+            background: linear-gradient(135deg, #f39c12, #d35400);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .card-header {
+                padding: 20px 15px 10px;
+            }
+            
+            .card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Data Logger</h1>
+            <p class="subtitle">Select a data recording option to monitor and log environmental parameters</p>
+        </header>
+        
+        <div class="options-grid">
+            <!-- Humidity & Temperature Option -->
+            <div class="option-card humidity" onclick="navigateTo('humidity-temperature.html')">
+                <div class="card-header">
+                    <div class="card-icon">🌡️</div>
+                    <h2 class="card-title">Humidity and Temperature</h2>
+                </div>
+                <div class="card-content">
+                    <p>Monitor and record environmental humidity and temperature data. Track changes over time and set alerts for critical conditions.</p>
+                </div>
+                <div class="card-footer">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </div>
+            </div>
+            
+            <!-- Distance Option -->
+            <div class="option-card distance" onclick="navigateTo('distance.html')">
+                <div class="card-header">
+                    <div class="card-icon">📏</div>
+                    <h2 class="card-title">Distance</h2>
+                </div>
+                <div class="card-content">
+                    <p>Measure and log distance data using ultrasonic or infrared sensors. Perfect for proximity detection and object tracking applications.</p>
+                </div>
+                <div class="card-footer">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </div>
+            </div>
+            
+            <!-- Hall Magnetic Option -->
+            <div class="option-card hall" onclick="navigateTo('hall-magnetic.html')">
+                <div class="card-header">
+                    <div class="card-icon">🧲</div>
+                    <h2 class="card-title">Hall Magnetic</h2>
+                </div>
+                <div class="card-content">
+                    <p>Detect and record magnetic field strength using Hall effect sensors. Useful for position sensing and magnetic field monitoring.</p>
+                </div>
+                <div class="card-footer">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </div>
+            </div>
+            
+            <!-- Noise Option -->
+            <div class="option-card noise" onclick="navigateTo('noise.html')">
+                <div class="card-header">
+                    <div class="card-icon">🔊</div>
+                    <h2 class="card-title">Noise</h2>
+                </div>
+                <div class="card-content">
+                    <p>Capture and analyze ambient noise levels. Record decibel measurements and identify patterns in environmental sound data.</p>
+                </div>
+                <div class="card-footer">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function navigateTo(page) {
+            location.href = page;
+        }
+    </script>
+</body>
+</html>
