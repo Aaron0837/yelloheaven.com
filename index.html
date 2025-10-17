@@ -81,13 +81,14 @@
         .card-icon {
             width: 60px;
             height: 60px;
-            border-radius: 50%;
+            border-radius: 50%; /* This should make it a perfect circle */
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 15px;
             font-size: 1.8rem;
             color: white;
+            flex-shrink: 0; /* Add this to prevent shrinking */
         }
         
         .card-title {
